@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax & Service Charge Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 50px; }
+        input, button { padding: 10px; margin: 10px; font-size: 16px; }
+        #result { font-size: 20px; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Tax & Service Charge Calculator</h2>
+    <input type="number" id="rate" placeholder="Enter rate amount" step="0.01">
+    <p>Tax: 7%</p>
+    <p>Service Charge: 10%</p>
+    <button onclick="calculateTotal()">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        function calculateTotal() {
+            let rate = parseFloat(document.getElementById('rate').value);
+            let taxRate = 0.07;
+            let serviceChargeRate = 0.10;
+
+            if (isNaN(rate) || rate < 0) {
+                document.getElementById('result').innerText = "Please enter a valid rate amount";
+                return;
+            }
+
+            let tax = rate * taxRate;
+            let amountWithTax = rate + tax;
+            let serviceCharge = amountWithTax * serviceChargeRate;
+            let total = amountWithTax + serviceCharge;
+
+            document.getElementById('result').innerText = `Total after 7% tax and 10% service charge: $${total.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
